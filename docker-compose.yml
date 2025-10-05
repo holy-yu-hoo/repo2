@@ -1,0 +1,21 @@
+services:
+  app:
+    build: ./app
+    #    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./app:/app
+    ports:
+      - "8000:8000"
+    environment:
+      - DJANGO_SETTINGS_MODULE=app.settings
+  nginx:
+    build: ./nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./app/static:/static
+      - ./app/templates:/templates
+    depends_on:
+      - app
