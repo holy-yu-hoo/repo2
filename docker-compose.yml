@@ -8,6 +8,11 @@ services:
       - "8000:8000"
     environment:
       - DJANGO_SETTINGS_MODULE=app.settings
+      - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@host.docker.internal:5432/${POSTGRES_DB}
+      - PYTHONUNBUFFERED=1
+    env_file:
+      - .env
+
   nginx:
     build: ./nginx
     ports:

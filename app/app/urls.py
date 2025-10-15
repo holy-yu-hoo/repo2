@@ -20,6 +20,6 @@ from . import views as app
 
 
 urlpatterns = [
-	path('admin/', admin.site.urls),
-	path('', app.index, name = 'index'),
+	path('admin/', admin.site.urls), path('', app.index, name = 'index'),
+	# path('character/check/', app.check_character_existing, name = 'check character existing'),
 ]

@@ -1,0 +1,51 @@
+{% load static %}
+<!doctype html>
+<html lang = "en">
+<head>
+	<meta charset = "UTF-8">
+	<meta name = "viewport" content = "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv = "X-UA-Compatible" content = "ie=edge">
+	<title>Document</title>
+	<link rel = "stylesheet" href = "{% static 'app/styles/style.css' %}">
+	<script src = "{% static 'app/scripts/player.js' %}"></script>
+</head>
+<body>
+<audio-player src = "{% static 'app/wild_hunt.mp3' %}"></audio-player>
+<form method = "post">
+	{% csrf_token %}
+	{{ form }}
+	<button type = "submit" id = "submit_button">submit</button>
+</form>
+{#<script>#}
+{#	let name_input = document.getElementById("id_name");#}
+{#	let universe_input = document.getElementById("id_universe");#}
+{#	let status_field = document.getElementById("character_status");#}
+{#	let submit_button = document.getElementById("submit_button");#}
+{##}
+{#	async function check_character_exists() {#}
+{#		let name = name_input.value.trim();#}
+{#		let universe = universe_input.value.trim();#}
+{##}
+{#		if (name && universe) {#}
+{#			let response = await fetch(`character/check/?name=${encodeURIComponent(name)}&universe=${encodeURIComponent(universe)}`);#}
+{#			let result = await response.text();#}
+{#			if (result === "True") {#}
+{#				status_field.innerHTML = `character ${name} from ${universe} already exists`;#}
+{#				submit_button.setAttribute("disabled", "disabled");#}
+{#			} else {#}
+{#				status_field.innerHTML = `character ${name} from ${universe} dont exists yet`;#}
+{#				submit_button.removeAttribute("disabled");#}
+{#			}#}
+{##}
+{#		}#}
+{#	}#}
+{##}
+{##}
+{#	name_input.addEventListener("input", check_character_exists);#}
+{#	universe_input.addEventListener("input", check_character_exists);#}
+{##}
+{#	name_input.addEventListener("change", check_character_exists);#}
+{#	universe_input.addEventListener("change", check_character_exists);#}
+{#</script>#}
+</body>
+</html>
