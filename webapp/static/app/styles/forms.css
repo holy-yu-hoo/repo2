@@ -1,0 +1,13 @@
+form.authorization {
+	display: flex;
+	border: 5px solid black;
+	border-radius: 10px;
+	background: violet;
+
+
+}
+
+
+form.authorization > div {
+
+}

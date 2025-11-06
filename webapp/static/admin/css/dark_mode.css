@@ -1,0 +1,130 @@
+@media (prefers-color-scheme: dark) {
+	:root {
+		--primary: #264B5D;
+		--primary-fg: #F7F7F7;
+
+		--body-fg: #EEEEEE;
+		--body-bg: #121212;
+		--body-quiet-color: #D0D0D0;
+		--body-medium-color: #E0E0E0;
+		--body-loud-color: #FFFFFF;
+
+		--breadcrumbs-link-fg: #E0E0E0;
+		--breadcrumbs-bg: var(--primary);
+
+		--link-fg: #81D4FA;
+		--link-hover-color: #4AC1F7;
+		--link-selected-fg: #6F94C6;
+
+		--hairline-color: #272727;
+		--border-color: #353535;
+
+		--error-fg: #E35F5F;
+		--message-success-bg: #006B1B;
+		--message-warning-bg: #583305;
+		--message-error-bg: #570808;
+
+		--darkened-bg: #212121;
+		--selected-bg: #1B1B1B;
+		--selected-row: #00363A;
+
+		--close-button-bg: #333333;
+		--close-button-hover-bg: #666666;
+
+		color-scheme: dark;
+	}
+}
+
+
+html[data-theme="dark"] {
+	--primary: #264B5D;
+	--primary-fg: #F7F7F7;
+
+	--body-fg: #EEEEEE;
+	--body-bg: #121212;
+	--body-quiet-color: #D0D0D0;
+	--body-medium-color: #E0E0E0;
+	--body-loud-color: #FFFFFF;
+
+	--breadcrumbs-link-fg: #E0E0E0;
+	--breadcrumbs-bg: var(--primary);
+
+	--link-fg: #81D4FA;
+	--link-hover-color: #4AC1F7;
+	--link-selected-fg: #6F94C6;
+
+	--hairline-color: #272727;
+	--border-color: #353535;
+
+	--error-fg: #E35F5F;
+	--message-success-bg: #006B1B;
+	--message-warning-bg: #583305;
+	--message-error-bg: #570808;
+
+	--darkened-bg: #212121;
+	--selected-bg: #1B1B1B;
+	--selected-row: #00363A;
+
+	--close-button-bg: #333333;
+	--close-button-hover-bg: #666666;
+
+	color-scheme: dark;
+}
+
+/* THEME SWITCH */
+.theme-toggle {
+	margin-top: -1px;
+	padding: 0;
+	cursor: pointer;
+	vertical-align: middle;
+	border: none;
+	background: transparent;
+	margin-inline-start: 5px;
+}
+
+.theme-toggle svg {
+	display: none;
+	width: 1.5rem;
+	height: 1.5rem;
+	vertical-align: middle;
+}
+
+/*
+Fully hide screen reader text so we only show the one matching the current
+theme.
+*/
+.theme-toggle .visually-hidden {
+	display: none;
+}
+
+html[data-theme="auto"] .theme-toggle .theme-label-when-auto {
+	display: block;
+}
+
+html[data-theme="dark"] .theme-toggle .theme-label-when-dark {
+	display: block;
+}
+
+html[data-theme="light"] .theme-toggle .theme-label-when-light {
+	display: block;
+}
+
+/* ICONS */
+.theme-toggle svg.theme-icon-when-auto,
+.theme-toggle svg.theme-icon-when-dark,
+.theme-toggle svg.theme-icon-when-light {
+	color: var(--header-bg);
+	fill: var(--header-link-color);
+}
+
+html[data-theme="auto"] .theme-toggle svg.theme-icon-when-auto {
+	display: block;
+}
+
+html[data-theme="dark"] .theme-toggle svg.theme-icon-when-dark {
+	display: block;
+}
+
+html[data-theme="light"] .theme-toggle svg.theme-icon-when-light {
+	display: block;
+}
