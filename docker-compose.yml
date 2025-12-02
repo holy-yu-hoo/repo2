@@ -1,0 +1,25 @@
+services:
+  webapp:
+    build: ./webapp
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./webapp:/webapp
+    ports:
+      - "8000:8000"
+    environment:
+      - DJANGO_SETTINGS_MODULE=app.settings
+      - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@host.docker.internal:5432/${POSTGRES_DB}
+      - PYTHONUNBUFFERED=1
+    env_file:
+      - .env
+  nginx:
+    build: ./nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./webapp/static:/static
+      - ./webapp/templates:/templates
+    depends_on:
+      - webapp
