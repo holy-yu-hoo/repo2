@@ -1,0 +1,45 @@
+{% extends "main/general_page.html" %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+{% block head %}
+	<link rel = "stylesheet" href = "{% static 'main/styles/user_home_page_style.css' %}">
+{% endblock %}
+{% block main %}
+	{% csrf_token %}
+	<p id = user-home-page-title>user home page {{ user.login }}<p>
+	<section id = "profile-section">
+
+		<span>name: </span><span id = "user-name" class = "profile-field">{{ user.profile.name }}</span>
+		<span>surname: </span><span id = "user-surname" class = "profile-field">{{ user.profile.surname }}</span>
+		<span>about: </span><span id = "user-about" class = "profile-field">{{ user.profile.about }}</span>
+
+	</section>
+
+	<div class = "edit-profile-buttons">
+		{% if request.session.user.login == user.login %}
+			<button id = "edit-profile"
+				onclick = "window.location.href='{% url "main:user_home_edit" user.login %}'"
+			>
+				Edit Profile
+			</button>
+		{% endif %}
+	</div>
+
+
+	{% if messages %}
+		<div class = "messages">
+			{% for message in messages %}
+				<div class = "alert alert-{{ message.tags }}">
+					{{ message }}
+					<button style = "float:right; background:none; border:none; cursor:pointer;"
+						onclick = "this.parentElement.remove()"
+					>×
+					</button>
+				</div>
+			{% endfor %}
+		</div>
+	{% endif %}
+
+
+
+{% endblock main %}

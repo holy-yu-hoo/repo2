@@ -1,0 +1,13 @@
+{% extends "main/general_page.html" %}
+{% load static %}
+{% block title %}Registration{% endblock title %}
+{% block head %}
+	<link rel = "stylesheet" href = "{% static 'main/styles/user_registration_form.css' %}">
+{% endblock head %}
+{% block main %}
+	<form class = "form user-registration-form" method = "post">
+		{% csrf_token %}
+		{{ form }}
+	</form>
+{% endblock %}
+

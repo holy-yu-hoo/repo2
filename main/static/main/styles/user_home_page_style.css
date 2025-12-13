@@ -1,0 +1,35 @@
+@import "general_style.css";
+
+@layer user_page_style {
+	#profile-section {
+		display: grid;
+		grid-template-columns: 0.1fr 1fr;
+		grid-auto-rows: auto;
+		gap: 10px;
+
+	}
+
+	.edit-profile-buttons {
+		position: absolute;
+		right: 5%;
+		bottom: 5%;
+		width: 20%;
+		display: flex;
+		justify-content: space-evenly;
+
+	}
+
+	.profile-field {
+		display: inline-block;
+		min-width: 100px;
+		height: 40px;
+		border: 1px solid black;
+		line-height: 40px;
+		padding: 0 5px;
+		box-sizing: border-box;
+	}
+
+	#user-home-page-title {
+		margin-bottom: 20px;
+	}
+}

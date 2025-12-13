@@ -1,0 +1,101 @@
+{% load static %}
+<!doctype html>
+<html lang = "en">
+<head>
+	<meta charset = "UTF-8">
+	<meta name = "viewport" content = "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv = "X-UA-Compatible" content = "ie=edge">
+	<title>{% block title %}General{% endblock title %}</title>
+	{% block head %}
+		<link rel = "stylesheet" href = "{% static 'main/styles/general_style.css' %}">
+	{% endblock head %}
+</head>
+<body>
+<header>
+	<h1>project web application</h1>
+	<search>
+		<form method = "post" action = "{% url 'main:search' %}">
+			{% csrf_token %}
+			<label for = "general_search"> Search </label>
+			<input id = "general_search" type = "search" name = "search_request">
+			<button>search</button>
+		</form>
+	</search>
+</header>
+<nav>
+	{% block navigation %}
+		<h3 id = "navigation-header">navigation</h3>
+		<a class = "navigation-link"
+			{% if request.session.user.login is not None %}
+				href = "{% url 'main:user_home' request.session.user.login %}"
+			{% endif %}
+		>
+
+			Home
+		</a>
+		<a class = "navigation-link" href = "/main/">
+			General
+		</a>
+		<a class = "navigation-link"
+			{% if request.session.user.login is None %}
+				href = "{% url 'main:login' %}"
+			{% endif %}
+		>
+
+			Log in
+
+		</a>
+		<a class = "navigation-link"
+			{% if request.session.user.login is  None %}
+				href = "{% url 'main:registration' %}"
+			{% endif %}
+		>
+			Registration
+		</a>
+	{% endblock navigation %}
+
+	{% if request.session.user.login is not None %}
+		<div id = "user-login">
+			<p>{{ request.session.user.login|default:'' }}</p>
+			<form method = "post" action = "{% url 'main:logout' %}">
+				{% csrf_token %}
+				<button type = "submit">Logout</button>
+			</form>
+		</div>
+	{% endif %}
+
+
+</nav>
+<main>
+	{% block main %}
+		<section id = "general_section">
+			<h3>Главная страница</h3>
+			<h5>
+				Приложение для тестирования на уязвимости с помощью специализированных средств
+			</h5>
+		</section>
+
+		<div id = "autograph">
+			<h3>
+				Developed by «VPNyashi»
+			</h3>
+		</div>
+	{% endblock main %}
+</main>
+
+<script>
+	document.addEventListener("DOMContentLoaded", function() {
+		const alerts = document.querySelectorAll(".alert");
+		alerts.forEach(alert => {
+			setTimeout(() => {
+				if (alert.parentElement) {
+					alert.style.opacity = "0";
+					setTimeout(() => alert.remove(), 300);
+				}
+			}, 3000);
+		});
+	});
+</script>
+</body>
+</html>
+

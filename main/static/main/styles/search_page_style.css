@@ -1,0 +1,33 @@
+@import "general_style.css";
+
+@layer search_style {
+	#search-results-section {
+		display: grid;
+		grid-template-columns: auto;
+		grid-auto-rows: auto;
+		align-items: center;
+		justify-items: center;
+	}
+
+	.user-slot {
+		width: 100%;
+		height: 40px;
+		display: block;
+		border: 1px solid black;
+		vertical-align: center;
+		line-height: 40px;
+		padding: 0 5px;
+		margin: 5px 0;
+		box-sizing: border-box;
+		text-decoration: none;
+		color: black;
+
+		transition-duration: 0.15s;
+
+		&[href]:hover {
+			transition-duration: 0.15s;
+			color: white;
+			background-color: black;
+		}
+	}
+}

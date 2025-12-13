@@ -1,0 +1,21 @@
+{% extends "main/general_page.html" %}
+{% load static %}
+{% block title %} Search {% endblock title %}
+{% block head %}
+	<link rel = "stylesheet" href = "{% static 'main/styles/search_page_style.css' %}" {% endblock head %}
+{% block main %}
+	<p>Search request: {{ search_request|safe }}</p>
+	<section id = "search-results-section">
+		{% for res in search_result %}
+			<a class = "user-slot"
+				href = "{% url 'main:user_home' res.login %}"
+				title = "{{ res.login }}"
+			>
+				{{ forloop.counter }}: {{ res.name }} {{ res.surname }}
+			</a>
+		{% empty %}
+			<p>By request: "{{ search_request }}" nothing found </p>
+		{% endfor %}
+	</section>
+
+{% endblock main %}

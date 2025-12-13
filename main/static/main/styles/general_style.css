@@ -1,0 +1,235 @@
+@font-face {
+	font-family: "Roboto";
+	font-style: normal;
+	font-weight: 400;
+	src: url("../fonts/Roboto-Regular.ttf") format("truetype");
+}
+
+@layer general_style {
+	* {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+
+	}
+
+
+	:root {
+		font-size: 10px;
+		width: 100%;
+		height: 100%;
+		font-family: "Roboto", sans-serif;
+	}
+
+	@media (max-width: 768px) {
+		:root {
+			font-size: 7px;
+		}
+	}
+
+	@media (max-width: 480px) {
+		:root {
+			font-size: 5px;
+		}
+	}
+
+	body {
+		width: 100%;
+		height: 100%;
+		display: grid;
+		grid-template:
+					[header-start] "header header" 7% [header-end]
+					[navigation-start] "navigation main" 93% [main-end]
+					/10% auto;
+	}
+
+	main {
+		grid-area: main;
+		position: relative;
+		font-size: 2.5rem;
+		padding: 10px;
+
+		& #general_section {
+			display: block;
+			width: 100%;
+			text-align: center;
+		}
+
+		& #autograph {
+			position: absolute;
+			right: 10px;
+			bottom: 10px;
+
+		}
+	}
+
+	header {
+
+		border-bottom: 5px solid black;
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		font-size: 2.5rem;
+		grid-area: header;
+
+		& input {
+			font-size: inherit;
+		}
+
+		& button {
+			justify-self: right;
+			appearance: none;
+			border: 2px solid black;
+			border-radius: 8px;
+			background-color: white;
+			padding: 5px;
+			line-height: 1em;
+			font-size: inherit;
+			transition-duration: 0.2s;
+
+			&:hover {
+				background-color: black;
+				color: white;
+				scale: 1.1;
+				transition-duration: 0.2s;
+			}
+		}
+
+		& input {
+			appearance: none;
+			border: 2px solid black;
+			border-radius: 8px;
+			background-color: white;
+			padding: 5px;
+			line-height: 1em;
+			font-size: inherit;
+		}
+	}
+
+
+	nav {
+		font-size: 2.5rem;
+		position: relative;
+		display: grid;
+		align-content: start;
+		justify-content: center;
+		text-align: center;
+		border-right: 5px solid black;
+		place-items: center;
+		grid-template-columns: 1fr;
+		grid-auto-rows: auto;
+		grid-area: navigation;
+
+		& #navigation-header {
+			margin-bottom: 30px;
+		}
+
+		& .navigation-link {
+			display: block;
+			width: 90%;
+			height: fit-content;
+			margin: 10px 0;
+			transition-duration: 0.2s;
+			text-decoration: initial;
+			color: black;
+			border: 2px solid black;
+			border-radius: 8px;
+			user-select: none;
+			gap: 5px;
+			position: relative;
+			padding: 5px;
+			box-sizing: border-box;
+
+			&[href]:hover {
+				transition-duration: 0.2s;
+				color: white;
+				background-color: black;
+				scale: 1.1;
+			}
+
+
+			&:not([href])::before {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				background-color: #000000AA;
+				content: "";
+				display: block;
+				top: 0;
+				left: 0;
+
+			}
+		}
+
+		#user-login {
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			margin: 10px 0;
+			text-align: center;
+		}
+
+
+	}
+
+	button {
+		font-size: inherit;
+		line-height: 1em;
+		padding: 5px;
+		transition-duration: 0.2s;
+		border: 2px solid black;
+		border-radius: 8px;
+		background-color: white;
+		appearance: none;
+		user-select: none;
+
+		&:hover {
+			transition-duration: 0.2s;
+			color: white;
+			background-color: black;
+			scale: 1.1;
+		}
+	}
+
+	.messages {
+		position: absolute;
+		top: 20px;
+		right: 20px;
+		z-index: 1000;
+	}
+
+	.alert {
+		padding: 12px 20px;
+		margin-bottom: 10px;
+		border-radius: 6px;
+		box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+		animation: show 0.3s ease, hide_message 0.3s ease 2.7s forwards;
+		background: #00FFFF99;
+		border-left: 7px solid #00FFFFFF;
+		color: black;
+
+
+	}
+
+
+	@keyframes show_message {
+		from {
+			transform: translateX(100%);
+			opacity: 0;
+		}
+		to {
+			transform: translateX(0);
+			opacity: 1;
+		}
+	}
+
+	@keyframes hide_message {
+		from { opacity: 1; }
+		to { opacity: 0; }
+	}
+}
+
+
+
+
+

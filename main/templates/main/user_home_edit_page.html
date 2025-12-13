@@ -1,0 +1,66 @@
+{% extends "main/general_page.html" %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+{% block head %}
+	<link rel = "stylesheet" href = "{% static 'main/styles/user_home_page_style.css' %}">
+{% endblock %}
+{% block main %}
+	{% csrf_token %}
+	<p id = "user-home-page-title">user home page {{ user.login }}</p>
+
+	<section id = "profile-section">
+
+		<span>name: </span>
+		<span id = "user-name" class = "profile-field" contenteditable = "true">{{ user.profile.name }}</span>
+
+		<span>surname: </span>
+		<span id = "user-surname" class = "profile-field" contenteditable = "true">{{ user.profile.surname }}</span>
+		<span>about: </span>
+		<span id = "user-about" class = "profile-field" contenteditable = "true">{{ user.profile.about }}</span>
+	</section>
+
+	<div class = "edit-profile-buttons">
+		<button id = "cancel-edit-profile"
+			onclick = "window.location.href='{% url "main:user_home" user.login %}'"
+		>
+			Cancel
+		</button>
+		<button id = "save-profile">Save Profile</button>
+	</div>
+
+	<script>
+		function getCSRFToken() {
+			return document.querySelector("[name=csrfmiddlewaretoken]")?.value ||
+			       document.cookie.match(/csrftoken=([^;]+)/)?.[1];
+		}
+
+		let save_profile_button = document.getElementById("save-profile");
+		let profile_section = document.getElementById("profile-section");
+		save_profile_button.addEventListener(
+			"click",
+			async function(event) {
+				let data = new FormData();
+				for (let i of profile_section.querySelectorAll(".profile-field")) {
+					let val = i.innerHTML;
+					if (val === "<br>") {
+						val = "";
+					}
+					data.append(i.id, val);
+				}
+				let response = await fetch("{% url 'main:user_home_edit' request.session.user.login %}", {
+						method: "POST",
+						headers: {
+							"X-CSRFToken": '{{ csrf_token }}',
+						},
+						body: data,
+					},
+				);
+
+				if (response.ok) {
+					console.log(await response.text());
+					window.location.href = '{% url "main:user_home" user.login %}';
+				}
+			},
+		);
+	</script>
+{% endblock main %}
