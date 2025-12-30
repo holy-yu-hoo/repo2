@@ -1,0 +1,8 @@
+{% extends 'base_search.html' %}
+{% block results %}
+	{% if response %}
+		{{ response }}
+	{% else %}
+		nothing found
+	{% endif %}
+{% endblock %}

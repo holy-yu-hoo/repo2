@@ -25,4 +25,5 @@ urlpatterns = [
 	# ),
 	path('main/', include(('main.urls', 'main')), ),
 	path('', views.index, name = 'index'),
+	path("app/", include(("app.urls", "app"))),
 ]

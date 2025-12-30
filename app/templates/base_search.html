@@ -1,0 +1,22 @@
+{% load static %}
+{% autoescape off %}
+	<html lang = "en-us">
+	<head>
+		<title>search</title>
+		<meta charset = "utf-8">
+		<meta name = "viewport" content = "width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel = "stylesheet" href = "{% static 'styles/style.css' %}">
+	</head>
+	<body>
+	<h1>Результаты поиска</h1>
+	<!-- вставляем напрямую в код страницы -> можно встроить что-то нехорошее -->
+	<p>Вы искали: {{ search_query }}</p>
+	<div id = "results">
+		<h3>RESULTS</h3>
+		{% block results %}
+			nothing found
+		{% endblock results %}
+	</div>
+	</body>
+	</html>
+{% endautoescape %}

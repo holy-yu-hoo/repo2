@@ -11,11 +11,11 @@ python manage.py runserver 8080
 перейти в браузере по http://localhost:8080/
 
 Примеры уязвимостей
-Переход по http://127.0.0.1:8080/main/search/?search_request=%3Cscript%3E%20alert(%22xss%20injection%22);%20%3C/script%3E приведет к xss-injection
+Переход по http://127.0.0.1:8080/main/search/?search_request="<script>setTimeout(() => {alert(("xss-attack\ncsrf-token: ").concat(document.getElementsByName("csrfmiddlewaretoken")[0].value));}, 1000);</script>"
 
 Ввод в поле Search
 
-'; DROP TABLE main_user; --
+' or true --
 Приведет к sql-injection (и удалит базу данных)
 
 Дополнительная информация

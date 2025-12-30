@@ -5,6 +5,7 @@ from . import forms
 from . import models
 from . import tools
 from django.db import connection
+from django.template.response import TemplateResponse
 
 
 def user_registration_view(request):

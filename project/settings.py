@@ -36,7 +36,8 @@ INSTALLED_APPS = [
 	'django.contrib.sessions',
 	'django.contrib.messages',
 	'django.contrib.staticfiles',
-	'main.apps.MainConfig',
+	'main',
+	'app',
 ]
 
 MIDDLEWARE = [
@@ -47,6 +48,7 @@ MIDDLEWARE = [
 	'django.contrib.auth.middleware.AuthenticationMiddleware',
 	'django.contrib.messages.middleware.MessageMiddleware',
 	'django.middleware.clickjacking.XFrameOptionsMiddleware',
+	'project.middleware.YMiddleware',
 ]
 
 ROOT_URLCONF = 'project.urls'
@@ -57,6 +59,7 @@ TEMPLATES = [
 		'DIRS': [
 			BASE_DIR / 'main/templates',
 			BASE_DIR / 'app/templates',
+			BASE_DIR / 'project/templates',
 		],
 		'APP_DIRS': True,
 		'OPTIONS': {
@@ -64,6 +67,7 @@ TEMPLATES = [
 				'django.template.context_processors.request',
 				'django.contrib.auth.context_processors.auth',
 				'django.contrib.messages.context_processors.messages',
+				'project.context_processors.session',
 			],
 		},
 	},
@@ -145,7 +149,3 @@ LOGGING = {
 		},
 	},
 }
-
-SESSION_COOKIE_HTTPONLY = True
-SESSION_COOKIE_SECURE = True  # Только для HTTPS
-CSRF_COOKIE_SECURE = True

@@ -1,6 +1,12 @@
 import django
-from django.forms.models import model_to_dict
 
 django.setup()
 
-from main.models import User
+import settings
+import importlib
+
+SessionStore = importlib.import_module(settings.SESSION_ENGINE).SessionStore()
+from django.contrib.sessions.models import Session
+
+x = Session.objects.all()
+print(x)
