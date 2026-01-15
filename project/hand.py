@@ -2,11 +2,15 @@ import django
 
 django.setup()
 
-import settings
-import importlib
+from django.contrib.auth.models import User, AbstractUser, Permission
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.contenttypes.models import ContentType
+from app.models import Universe
+from django.contrib.auth.decorators import login_required
 
-SessionStore = importlib.import_module(settings.SESSION_ENGINE).SessionStore()
-from django.contrib.sessions.models import Session
+# content_type = ContentType.objects.get_for_model(Universe)
+user_permissions = Permission.objects
+# print(user_permissions)
+user = authenticate(username = "yura", password = "12345")
 
-x = Session.objects.all()
-print(x)
+# user.user_permissions.add(*user_permissions)

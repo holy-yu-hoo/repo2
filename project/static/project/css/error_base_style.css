@@ -1,0 +1,54 @@
+@font-face {
+	font-family: "Neonderthaw";
+	font-style: italic;
+	font-weight: 400;
+	src: url("/static/project/fonts/Neonderthaw.ttf") format("truetype");
+}
+
+:root {
+	font-size: 10px;
+}
+
+body {
+	background: black;
+}
+
+main {
+
+	font-size: 3rem;
+	line-height: 6rem;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+
+}
+
+#text-field {
+	font-family: "Neonderthaw", sans-serif;
+	font-weight: 100;
+	margin-top: 20px;
+	padding: 20px 40px;
+	color: var(--accent-color);
+	border-radius: 28px;
+	outline: 3px solid var(--accent-color);
+	outline-offset: -3px;
+	--accent-color: violet;
+	--second-accent-color: white;
+}
+
+
+#error {
+	font-size: 9rem;
+
+	& #error-code {
+		font-size: 1.3em;
+	}
+}
+
+#error-message {
+	font-size: 7rem;
+}
+
+#error-description {
+	font-size: 5rem;
+}

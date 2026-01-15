@@ -1,0 +1,26 @@
+{% if field.use_fieldset %}
+	<fieldset{% if field.aria_describedby %} aria-describedby = "{{ field.aria_describedby }}"{% endif %}>
+	{% if field.label %}
+		<div class = "field-tag">
+			{{ field.legend_tag }}
+		</div>
+	{% endif %}
+{% else %}
+	{% if field.label %}
+		<div class = "field-tag">
+			{{ field.label_tag }}
+		</div>
+	{% endif %}
+{% endif %}
+
+{% if field.help_text %}
+	<div class = "helptext"{% if field.auto_id %} id = "{{ field.auto_id }}_helptext"{% endif %}>{{ field.help_text|safe }}</div>
+{% endif %}
+
+<div class = "field-container{% if field.errors %} invalid{% endif %}">
+	{{ field }}
+</div>
+<div class = "field-errors-container">{{ field.errors }}</div>
+{% if field.use_fieldset %}
+	</fieldset>
+{% endif %}

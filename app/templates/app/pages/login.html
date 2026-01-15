@@ -1,0 +1,11 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block link %}
+	{{ form.media }}
+	<link rel = "stylesheet" href = "{% static 'app/css/login_style.css' %}" type = "text/css">
+{% endblock link %}
+{% block body %}
+	<main>
+		{% include 'app/forms/form.html' %}
+	</main>
+{% endblock body %}

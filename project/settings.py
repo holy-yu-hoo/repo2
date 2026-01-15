@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 	'django.contrib.staticfiles',
 	'main',
 	'app',
+	'project',
 ]
 
 MIDDLEWARE = [
@@ -70,7 +71,6 @@ TEMPLATES = [
 				'django.template.context_processors.request',
 				'django.contrib.auth.context_processors.auth',
 				'django.contrib.messages.context_processors.messages',
-				'project.context_processors.session',
 			],
 		},
 	},
@@ -88,6 +88,7 @@ DATABASES = {
 	},
 }
 
+LOGIN_URL = '/app/login/'
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
 
@@ -123,8 +124,11 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = (
 	BASE_DIR / 'app' / 'static',
 	BASE_DIR / 'main/static',
+	BASE_DIR / 'project' / 'static',
 )
 STATIC_ROOT = BASE_DIR / 'static'
+MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = '/media/'
 
 # logging
 LOGGING = {

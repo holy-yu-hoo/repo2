@@ -1,0 +1,54 @@
+@import "general_style.css";
+
+@layer user_registration_form {
+	.user-registration-form {
+		display: grid;
+		grid-template-columns: 0.25fr 1.75fr;
+		grid-auto-rows: fit-content(1fr);
+		grid-template-areas: "field-label field";
+		align-content: space-around;
+		align-items: center;
+		width: 40%;
+		min-width: fit-content;
+		min-height: 40%;
+		border: 5px solid black;
+		border-radius: 10px;
+		padding: 20px;
+		box-sizing: border-box;
+		gap: 0 10px;
+		position: relative;
+		margin: 0 auto;
+		top: 10%;
+
+		& input {
+			appearance: none;
+			border: 2px solid black;
+			border-radius: 8px;
+			background-color: white;
+			padding: 5px;
+			line-height: 1em;
+			font-size: inherit;
+		}
+
+		& button {
+
+			justify-self: right;
+		}
+
+		& #form-label {
+			grid-column: span 2;
+			justify-self: center;
+		}
+
+		& #form-errors {
+			grid-column: span 2;
+			place-self: stretch;
+			background-color: rgba(255, 0, 0, 0.5);
+			text-align: center;
+			border-radius: 8px;
+		}
+
+
+	}
+
+}

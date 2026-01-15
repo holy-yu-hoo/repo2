@@ -1,21 +1,30 @@
-from django.http import HttpRequest, HttpResponse
-from django.shortcuts import render
-from django.views.generic import TemplateView, View
-from django.conf import settings
-from importlib import import_module
+from django.http import HttpRequest, HttpResponse, JsonResponse
+from django.shortcuts import render, redirect, reverse
+from django.views.decorators.csrf import csrf_exempt
+from django.views.generic import TemplateView, View, FormView
+from django.utils.decorators import method_decorator
+from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin
+from django.contrib.auth.decorators import permission_required
+# from django.contrib.auth import login,logout
+from django.contrib.auth import authenticate, login, logout
+from . import forms
+from . import models
+import json
 
-SessionStore = import_module(settings.SESSION_ENGINE).SessionStore()
+
+@permission_required('app.add_character', raise_exception = True)
+def index(request):
+	return render(request, 'app/index.html')
 
 
-class IndexView(TemplateView):
+def logout_view(request):
+	logout(request)
+	return redirect(reverse('app:login'))
+
+
+class ReqView(LoginRequiredMixin, TemplateView):
 	template_name = 'app/index.html'
+	raise_exception = True
+	permission_denied_message = "if you can't access this page, tell your mom about it"
 
-	def get_context_data(self, **kwargs):
-		context = super().get_context_data(**kwargs)
-		context.update({'data': 'i not have data'})
-		return context
-
-	def get(self, request, *args, **kwargs):
-		response = super().get(request, *args, **kwargs)
-		# response.cookies['key'] = 'i am cookie'
-		return response
+# permission_required = ('app.add_character',)

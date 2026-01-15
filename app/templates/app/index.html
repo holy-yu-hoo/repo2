@@ -1,19 +1,142 @@
-{% load static %}
 <!doctype html>
 <html lang = "en">
-
 <head>
 	<meta charset = "UTF-8">
-	<meta name = "viewport"
-		content = "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
-	>
+	<meta name = "viewport" content = "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta http-equiv = "X-UA-Compatible" content = "ie=edge">
 	<title>Document</title>
+
+	<style>
+		body {
+			background-color: #000000;
+		}
+
+		div.container {
+			width: 400px;
+			height: 400px;
+			background-image: linear-gradient(#1b1b1b, black);
+			box-shadow: 0 0 10px #1b1b1b;
+			position: relative;
+			border: 5px solid transparent;
+			border-radius: 20px;
+			overflow: clip;
+			background-clip: padding-box;
+			overflow-clip-margin: border-box;
+		}
+
+		div.container::before {
+			content: '';
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			background-image: linear-gradient(45deg, black 48%, cyan 48% 52%, black 52%);
+			left: 50%;
+			top: 50%;
+			transform-origin: left top;
+			z-index: -1;
+			animation: rotate 8s linear infinite;
+			filter: blur(20px);
+		}
+
+		div.scene {
+			position: relative;
+			width: fit-content;
+			height: fit-content;
+		}
+
+		div.fire {
+			--size: 40px;
+			position: absolute;
+			width: var(--size);
+			height: var(--size);
+			background: cyan;
+			filter: blur(var(--size));
+			z-index: -1;
+			left: calc(100% - var(--size));
+			top: calc(100% - var(--size));
+			animation: move_along_border 8s linear infinite;
+		}
+
+		div.container2 {
+			width: 100%;
+			height: 100%;
+			position: relative;
+			isolation: isolate;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		div.child {
+			width: 90%;
+			height: 10%;
+			position: relative;
+			background-color: black;
+			border: 2px solid transparent;
+			border-radius: 6px;
+			overflow: clip;
+			background-clip: padding-box;
+			overflow-clip-margin: border-box;
+		}
+
+		div.child::before {
+			content: '';
+			position: absolute;
+			width: 200%;
+			aspect-ratio: 1;
+			background-image: linear-gradient(black 48%, cyan 50%, black 52%);
+			left: 50%;
+			top: 50%;
+			translate: -50% -50%;
+			z-index: -1;
+			animation: rotate 8s linear infinite;
+			filter: blur(5px);
+		}
+
+
+		@keyframes rotate {
+			from {
+				rotate: 0;
+			}
+			to {
+				rotate: 360deg;
+			}
+		}
+
+		@keyframes move_along_border {
+			0% {
+				left: calc(100% - var(--size));
+				top: calc(100% - var(--size));
+			}
+			25% {
+				left: 0;
+				top: calc(100% - var(--size));
+			}
+			50% {
+				left: 0;
+				top: 0;
+			}
+			75% {
+				left: calc(100% - var(--size));
+				top: 0;
+			}
+			100% {
+				left: calc(100% - var(--size));
+				top: calc(100% - var(--size));
+			}
+		}
+	</style>
 </head>
-
 <body>
-{{ data }}
-</body>
-<audio src = "{% static 'app/media/levan_pollka.mp3' %}" controls></audio>
+<div class = "scene">
+	<div class = "fire"></div>
+	<div class = "container">
 
+		<div class = "container2">
+			<div class = "child"></div>
+			<div class = "child"></div>
+		</div>
+	</div>
+</div>
+</body>
 </html>

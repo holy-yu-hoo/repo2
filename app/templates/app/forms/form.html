@@ -1,0 +1,13 @@
+{% with action=action|default:'' method=method|default:'post' id=id|default:'form' class=class|default:'form' %}
+	<div class = "form-container">
+		<form action = "{{ action }}" method = "{{ method }}" id = "{{ id }}" class = "{{ class }}">
+			<div class = "csrf-token-container">
+				{% csrf_token %}
+			</div>
+			{{ form }}
+			<div class = "form-submit-container">
+				<input type = "submit" value = "submit">
+			</div>
+		</form>
+	</div>
+{% endwith %}

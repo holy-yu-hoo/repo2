@@ -1,0 +1,31 @@
+{% load static %}
+<!doctype html>
+<html lang = "en">
+<head>
+	<meta charset = "UTF-8">
+	<meta name = "viewport" content = "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv = "X-UA-Compatible" content = "ie=edge">
+	<title>{% block title %}error {{ error_code }}{% endblock %}</title>
+	{#	<link href = 'https://fonts.googleapis.com/css?family=Yellowtail:400' rel = 'stylesheet' type = 'text/css'>#}
+	<link rel = "stylesheet" href = "{% static 'project/css/error_base_style.css' %}">
+	<link href = "{% static 'project/fonts/Neonderthaw.ttf' %}" rel = "preload" as = "font" crossorigin>
+
+</head>
+<body>
+<main>
+	<div id = "text-field"
+		style = "box-shadow: 0 0 35px var(--accent-color),
+			inset 0 0 35px var(--accent-color),
+			0 0 7px var(--second-accent-color),
+			inset 0 0 7px var(--second-accent-color);
+			text-shadow: 0 0 15px var(--accent-color),
+			0 0 3px var(--second-accent-color);"
+	>
+		<h1 id = "error">ERROR <span id = "error-code">{{ error_code }}</span></h1>
+		<h2 id = "error-message">{{ error_message }}</h2>
+		<h3 id = "error-description">{{ exception }}</h3>
+	</div>
+</main>
+<script src = "{% static 'project/js/shimmering_panel.js' %}"></script>
+</body>
+</html>
